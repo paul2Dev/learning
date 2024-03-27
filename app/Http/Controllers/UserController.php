@@ -10,4 +10,9 @@ class UserController extends Controller
     {
         return view('user.dashboard');
     }
+
+    public function index()
+    {
+        return view('frontend.index');
+    }
 }

@@ -33,8 +33,13 @@
                             </button>
                         </div>
                         <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray pl-3 ml-3">
-                            <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray"><i class="la la-sign-in mr-1"></i><a href="{{ route('login') }}"> Login</a></li>
-                            <li class="d-flex align-items-center"><i class="la la-user mr-1"></i><a href="{{ route('register') }}"> Register</a></li>
+                            @auth
+                                <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray"><i class="la la-gear mr-1"></i><a href="{{ route('user.dashboard') }}"> Dashboard</a></li>
+                                <li class="d-flex align-items-center"><i class="la la-power-off mr-1"></i><a href="{{ route('user.logout') }}"> Logout</a></li>
+                            @else
+                                <li class="d-flex align-items-center pr-3 mr-3 border-right border-right-gray"><i class="la la-sign-in mr-1"></i><a href="{{ route('login') }}"> Login</a></li>
+                                <li class="d-flex align-items-center"><i class="la la-user mr-1"></i><a href="{{ route('register') }}"> Register</a></li>
+                            @endauth
                         </ul>
                     </div><!-- end header-widget -->
                 </div><!-- end col-lg-6 -->
@@ -261,9 +266,8 @@
                                                     <a href="for-business.html">for business</a>
                                                     <a href="sign-up.html">sign-up</a>
                                                     <a href="login.html">login</a>
-                                                    <a href="recover.html">recover</a>
-                                                    <a href="shopping-cart.html">cart</a>
                                                     <a href="checkout.html">checkout</a>
+                                                    <a href="shopping-cart.html">cart</a>
                                                     <a href="error.html">page 404</a>
                                                 </li>
                                                 <li class="col-lg-3">
@@ -402,9 +406,8 @@
                     <li><a href="contact.html">contact</a></li>
                     <li><a href="sign-up.html">sign-up</a></li>
                     <li><a href="login.html">login</a></li>
-                    <li><a href="recover.html">recover</a></li>
-                    <li><a href="shopping-cart.html">cart</a></li>
                     <li><a href="checkout.html">checkout</a></li>
+                    <li><a href="shopping-cart.html">cart</a></li>
                     <li><a href="error.html">page 404</a></li>
                 </ul>
             </li>

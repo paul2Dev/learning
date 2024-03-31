@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -39,9 +40,11 @@ class UserController extends Controller
 
         if($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/user_images/'.$profile->photo));
+            if ($profile->photo) {
+                Storage::disk('public')->delete('upload/user_images/' . $profile->photo);
+            }
             $filename = time() . $file->getClientOriginalName();
-            $file->move(public_path('upload/user_images'), $filename);
+            Storage::disk('public')->putFileAs('upload/user_images', $file, $filename);
             $profile->photo = $filename;
         }
 

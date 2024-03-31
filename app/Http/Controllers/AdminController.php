@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -50,9 +51,11 @@ class AdminController extends Controller
 
         if($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/admin_images/'.$profile->photo));
+            if ($profile->photo) {
+                Storage::disk('public')->delete('upload/admin_images/' . $profile->photo);
+            }
             $filename = time() . $file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'), $filename);
+            Storage::disk('public')->putFileAs('upload/admin_images', $file, $filename);
             $profile->photo = $filename;
         }
 

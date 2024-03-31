@@ -38,10 +38,20 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path(''),
             'visibility' => 'public',
-            'throw' => false,
+        ],
+
+        'upload' => [
+            'driver' => 'local',
+            'root' => public_path('upload'),
+            'visibility' => 'public',
+        ],
+
+        'thumbs' => [
+            'driver' => 'local',
+            'root' => public_path('upload/thumbs'),
+            'visibility' => 'public',
         ],
 
         's3' => [

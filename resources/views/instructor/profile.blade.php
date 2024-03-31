@@ -75,7 +75,7 @@
                                     <h6 class="mb-0">Profile Image</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="file" name="photo" id="profile_image" class="form-control" />
+                                    <input type="file" name="photo"  class="form-control" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -83,7 +83,7 @@
                                     <h6 class="mb-0"></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <img id="showProfileImage" src="{{ (!empty($profile->photo)) ? url('upload/instructor_images/'.$profile->photo) : url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
+                                    <img id="showImage" src="{{ (!empty($profile->photo)) ? url('upload/instructor_images/'.$profile->photo) : url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
                                 </div>
                             </div>
                             <div class="row">

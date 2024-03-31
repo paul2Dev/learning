@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,16 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::post('/admin/profile/store', [AdminController::class, 'profileStore'])->name('admin.profile.store');
     Route::get('/admin/change/password', [AdminController::class, 'changePassword'])->name('admin.change.password');
     Route::post('/admin/password/update', [AdminController::class, 'passwordUpdate'])->name('admin.password.update');
+
+    //category routes
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/admin/category', 'index')->name('category.index');
+        Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::post('/admin/category/update', [CategoryController::class, 'update'])->name('category.update');
+        Route::get('/admin/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+    });
 });
 
 //instruction group

@@ -788,5 +788,14 @@ Author Email:   contact@techydevs.com
             });
         }
 
+        //user profile image
+        $("#image").change(function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
     });
 })(jQuery);

@@ -9,11 +9,11 @@
                 @csrf
                 <div class="media media-card align-items-center">
                     <div class="media-img media-img-lg mr-4 bg-gray">
-                        <img class="mr-3" src="{{ (!empty($profile->photo)) ? url('upload/user_images/'.$profile->photo) : url('upload/no_image.jpg') }}" alt="avatar image">
+                        <img class="mr-3" id="showImage" src="{{ (!empty($profile->photo)) ? url('upload/user_images/'.$profile->photo) : url('upload/no_image.jpg') }}" alt="avatar image">
                     </div>
                     <div class="media-body">
                         <div class="file-upload-wrap file-upload-wrap-2">
-                            <input type="file" name="photo" class="multi file-upload-input with-preview" multiple>
+                            <input type="file" id="image" name="photo" class="file-upload-input with-preview" >
                             <span class="file-upload-text"><i class="la la-photo mr-2"></i>Upload a Photo</span>
                         </div><!-- file-upload-wrap -->
                         <p class="fs-14">Max file size is 5MB, Minimum dimension: 200x200 And Suitable files are .jpg & .png</p>

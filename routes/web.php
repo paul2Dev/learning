@@ -52,11 +52,21 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     //category routes
     Route::controller(CategoryController::class)->group(function(){
         Route::get('/admin/category', 'index')->name('category.index');
-        Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('category.create');
-        Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('category.store');
-        Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-        Route::post('/admin/category/update', [CategoryController::class, 'update'])->name('category.update');
-        Route::get('/admin/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+        Route::get('/admin/category/create', 'create')->name('category.create');
+        Route::post('/admin/category/store', 'store')->name('category.store');
+        Route::get('/admin/category/edit/{id}', 'edit')->name('category.edit');
+        Route::post('/admin/category/update', 'update')->name('category.update');
+        Route::get('/admin/category/delete/{id}', 'delete')->name('category.delete');
+    });
+
+    //subcategory routes
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/admin/subcategory', 'subcategoryIndex')->name('subcategory.index');
+        Route::get('/admin/subcategory/create', 'subcategoryCreate')->name('subcategory.create');
+        Route::post('/admin/subcategory/store', 'subcategoryStore')->name('subcategory.store');
+        Route::get('/admin/subcategory/edit/{id}', 'subcategoryEdit')->name('subcategory.edit');
+        Route::post('/admin/subcategory/update', 'subcategoryUpdate')->name('subcategory.update');
+        Route::get('/admin/subcategory/delete/{id}', 'subcategoryDelete')->name('subcategory.delete');
     });
 });
 

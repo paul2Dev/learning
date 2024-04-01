@@ -31,7 +31,7 @@
             <ul>
                 <li> <a href="{{ route('category.index') }}"><i class='bx bx-radio-circle'></i>All Categories</a>
                 </li>
-                <li> <a href="{{ route('category.create') }}"><i class='bx bx-radio-circle'></i>Add Category</a>
+                <li> <a href="{{ route('subcategory.index') }}"><i class='bx bx-radio-circle'></i>Add Subcategories</a>
                 </li>
             </ul>
         </li>

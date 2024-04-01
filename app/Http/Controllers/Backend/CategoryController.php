@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Subcategory;
 
 class CategoryController extends Controller
 {
+    //category methods
+
     public function index()
     {
         $categories = Category::latest()->get();
@@ -93,5 +96,83 @@ class CategoryController extends Controller
         );
 
         return redirect()->route('category.index')->with($notification);
+    }
+
+    //subcategory methods
+
+    public function subcategoryIndex()
+    {
+        $subcategories = Subcategory::latest()->get();
+        return view('admin.subcategory.index', compact('subcategories'));
+    }
+
+    public function subcategoryCreate()
+    {
+        $categories = Category::latest()->get();
+        return view('admin.subcategory.create', compact('categories'));
+    }
+
+    public function subcategoryStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:subcategories,name',
+            'category_id' => 'required',
+        ]);
+
+        Subcategory::create([
+            'name' => $request->name,
+            'slug' => \Str::slug($request->name),
+            'category_id' => $request->category_id,
+        ]);
+
+        $notification = array(
+            'message' => 'Subcategory Created Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('subcategory.index')->with($notification);
+    }
+
+    public function subcategoryEdit($id)
+    {
+        $subcategory = Subcategory::find($id);
+        $categories = Category::latest()->get();
+        return view('admin.subcategory.edit', compact('subcategory', 'categories'));
+    }
+
+    public function subcategoryUpdate(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:subcategories,name,'.$request->id,
+            'category_id' => 'required',
+        ]);
+
+        $subcategory = Subcategory::find($request->id);
+
+        $subcategory->update([
+            'name' => $request->name,
+            'slug' => \Str::slug($request->name),
+            'category_id' => $request->category_id,
+        ]);
+
+        $notification = array(
+            'message' => 'Subcategory Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('subcategory.index')->with($notification);
+    }
+
+    public function subcategoryDelete($id)
+    {
+        $subcategory = Subcategory::find($id);
+        $subcategory->delete();
+
+        $notification = array(
+            'message' => 'Subcategory Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('subcategory.index')->with($notification);
     }
 }

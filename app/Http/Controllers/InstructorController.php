@@ -103,4 +103,37 @@ class InstructorController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function apply()
+    {
+        return view('instructor.apply');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role' => 'instructor',
+            'status' => '0'
+        ]);
+
+        $notification = array(
+            'message' => 'Application Submitted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('instructor.login')->with($notification);
+    }
+
 }

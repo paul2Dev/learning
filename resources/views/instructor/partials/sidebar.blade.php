@@ -19,7 +19,7 @@
             </a>
         </li>
 
-
+        @if (Auth::user()->status == 1)
 
         <li class="menu-label">UI Elements</li>
         <li>
@@ -81,6 +81,7 @@
                 </li>
             </ul>
         </li>
+        @endif
         <li>
             <a href="https://themeforest.net/user/codervent" target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>

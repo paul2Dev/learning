@@ -68,6 +68,12 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/admin/subcategory/update', 'subcategoryUpdate')->name('subcategory.update');
         Route::get('/admin/subcategory/delete/{id}', 'subcategoryDelete')->name('subcategory.delete');
     });
+
+    //instructor routes
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/admin/intructor', 'instructorIndex')->name('instructor.index');
+        Route::post('/admin/intructor/update-status', 'instructorUpdateStatus')->name('instructor.update.status');
+    });
 });
 
 //instruction group

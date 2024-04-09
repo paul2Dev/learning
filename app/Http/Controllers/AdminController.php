@@ -103,4 +103,25 @@ class AdminController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function instructorIndex()
+    {
+        $instructors = User::where('role', 'instructor')->latest()->get();
+
+        return view('admin.instructor.index', compact('instructors'));
+    }
+
+    public function instructorUpdateStatus(Request $request)
+    {
+        $userId = $request->get('userId');
+        $isChecked = $request->get('isChecked', 0);
+
+        $instructor = User::find($userId);
+        if($instructor) {
+            $instructor->status = $isChecked;
+            $instructor->save();
+        }
+
+        return response()->json(['message' => 'User Status Updated Successfully']);
+    }
 }

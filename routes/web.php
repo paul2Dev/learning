@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -87,4 +88,12 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
     Route::post('/instructor/profile/store', [InstructorController::class, 'profileStore'])->name('instructor.profile.store');
     Route::get('/instructor/change/password', [InstructorController::class, 'changePassword'])->name('instructor.change.password');
     Route::post('/instructor/password/update', [InstructorController::class, 'passwordUpdate'])->name('instructor.password.update');
+
+    //instructor routes
+    Route::controller(CourseController::class)->group(function(){
+        Route::get('/instructor/courses', 'index')->name('courses.index');
+        Route::get('/instructor/course/create', 'create')->name('course.create');
+        Route::post('/instructor/course/store', 'store')->name('course.store');
+        Route::get('/subcategory/ajax/{category_id}', 'subcategoryAjax');
+    });
 });

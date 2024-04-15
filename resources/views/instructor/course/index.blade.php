@@ -41,12 +41,12 @@
                             <td>{{ $course->id }}</td>
                             <td><img src="{{ Croppa::url($course->image, 50) }}" alt=""></td>
                             <td>{{ $course->name }}</td>
-                            <td>{{ $course->category_id }}</td>
+                            <td>{{ $course->category->name }}</td>
                             <td>{{ $course->price }}</td>
                             <td>{{ $course->discount_price }}</td>
                             <td>
-                                <a href="{{ route('category.edit', $course->id) }}" class="btn btn-outline-info"><i class="bx bx-pencil me-0"></i></a>
-                                <a href="{{ route('category.delete', $course->id) }}" class="btn btn-outline-danger" id="delete"><i class="bx bx-x me-0"></i></a>
+                                <a href="{{ route('course.edit', $course->id) }}" class="btn btn-outline-info"><i class="bx bx-pencil me-0"></i></a>
+                                <a href="{{ route('course.delete', $course->id) }}" class="btn btn-outline-danger" id="delete"><i class="bx bx-x me-0"></i></a>
                             </td>
                         </tr>
                         @endforeach

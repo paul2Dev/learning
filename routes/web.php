@@ -95,5 +95,11 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
         Route::get('/instructor/course/create', 'create')->name('course.create');
         Route::post('/instructor/course/store', 'store')->name('course.store');
         Route::get('/subcategory/ajax/{category_id}', 'subcategoryAjax');
+        Route::get('/instructor/course/edit/{id}', 'edit')->name('course.edit');
+        Route::post('/instructor/course/update', 'update')->name('course.update');
+        Route::post('/instructor/course/update/image', 'updateImage')->name('course.update.image');
+        Route::post('/instructor/course/update/video', 'updateVideo')->name('course.update.video');
+        Route::post('/instructor/course/update/goals', 'updateGoals')->name('course.update.goals');
+        Route::get('/instructor/course/delete/{id}', 'delete')->name('course.delete');
     });
 });
